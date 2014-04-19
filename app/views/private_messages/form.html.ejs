@@ -1,0 +1,22 @@
+<div class="control-group">
+  <label for="user" class="control-label">adresee</label>
+  <div class="controls">
+    <%- selectTag(users, privateMessage.userId, {
+      name: 'userId',
+      valueField: 'id',
+      textField: 'name'
+    }); %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="content" class="control-label">content</label>
+  <div class="controls">
+    <%- contentTag('input', privateMessage.content, {type:'text', class:'span6', name:'content'}) %>
+  </div>
+</div>
+<div class="control-group">
+  <label for="status" class="control-label">status</label>
+  <div class="controls">
+    <%- contentTag('input', privateMessage.status, {type:'text', class:'span6', name:'status'}) %>
+  </div>
+</div>

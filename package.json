@@ -1,0 +1,12 @@
+{
+  "name": "rtgp",
+  "version": "0.0.1",
+  "author": "",
+  "dependencies": {},
+  "devDependencies": {
+  	"geddy": "0.12.9"
+  },
+  "engines": {
+    "node": "0.8.x"
+  }
+}
