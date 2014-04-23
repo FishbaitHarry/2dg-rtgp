@@ -32,18 +32,18 @@
 			}
 		},
 		{
-			"file": "app/views/users/show.html.ejs",
+			"file": "/C/Users/majs1/AppData/Roaming/Sublime Text 2/Packages/Git/Git.sublime-settings",
 			"settings":
 			{
-				"buffer_size": 752,
+				"buffer_size": 1466,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/layouts/application.html.ejs",
+			"file": "app/views/users/show.html.ejs",
 			"settings":
 			{
-				"buffer_size": 1131,
+				"buffer_size": 751,
 				"line_ending": "Unix"
 			}
 		}
@@ -51,11 +51,39 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 0.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"bl",
+				"Git: Blame"
+			],
+			[
+				"dif",
+				"Git: Diff Current File"
+			],
+			[
+				"annot",
+				"Git: Toggle Annotations"
+			],
+			[
+				"anno",
+				"Git: Toggle Annotations"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			]
 		],
-		"width": 0.0
+		"width": 400.0
 	},
 	"console":
 	{
@@ -72,6 +100,10 @@
 	},
 	"file_history":
 	[
+		"/C/Users/majs1/git/rtgeddy/app/views/users/show.html.ejs",
+		"/C/Users/majs1/AppData/Roaming/Sublime Text 2/Packages/User/Git.sublime-settings",
+		"/C/Users/majs1/AppData/Roaming/Sublime Text 2/Packages/User/Package Control.sublime-settings",
+		"/C/Users/majs1/git/rtgeddy/app/views/layouts/application.html.ejs",
 		"/C/Users/majs1/git/rtgeddy/rtgp.sublime-project",
 		"/C/Users/majs1/git/rtgeddy/app/views/private_messages/form.html.ejs",
 		"/C/Users/majs1/git/rtgeddy/app/controllers/private_messages.js",
@@ -108,6 +140,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"geddy",
 			"user",
 			"saveUser",
 			"validate"
@@ -128,7 +161,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -149,6 +182,7 @@
 						],
 						"settings":
 						{
+							"live_git_annotations": true,
 							"syntax": "Packages/JavaScript/JSON.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
@@ -171,12 +205,13 @@
 						"selection":
 						[
 							[
-								224,
-								224
+								146,
+								146
 							]
 						],
 						"settings":
 						{
+							"live_git_annotations": true,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
@@ -199,41 +234,14 @@
 						"selection":
 						[
 							[
-								977,
-								977
+								738,
+								738
 							]
 						],
 						"settings":
 						{
+							"live_git_annotations": true,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 396.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/views/users/show.html.ejs",
-					"settings":
-					{
-						"buffer_size": 752,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								731,
-								655
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -244,24 +252,52 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "app/views/layouts/application.html.ejs",
+					"buffer": 3,
+					"file": "/C/Users/majs1/AppData/Roaming/Sublime Text 2/Packages/Git/Git.sublime-settings",
 					"settings":
 					{
-						"buffer_size": 1131,
+						"buffer_size": 1466,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								537,
-								537
+								1006,
+								1006
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/views/users/show.html.ejs",
+					"settings":
+					{
+						"buffer_size": 751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								726,
+								726
+							]
+						],
+						"settings":
+						{
+							"live_git_annotations": true,
+							"syntax": "Packages/EJS/EJS_alternative.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -315,6 +351,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"show",
+				"app/views/users/show.html.ejs"
+			],
 			[
 				"usershow",
 				"app/views/users/show.html.ejs"
