@@ -5,9 +5,7 @@ var PrivateMessages = function () {
     var self = this;
 
     geddy.model.PrivateMessage.all(function(err, privateMessages) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       self.respondWith(privateMessages, {type:'PrivateMessage'});
     });
   };
@@ -21,19 +19,19 @@ var PrivateMessages = function () {
   };
 
   this.create = function (req, resp, params) {
-    var self = this
-      , privateMessage = geddy.model.PrivateMessage.create(params);
+    var self = this;
+    var privateMessage = geddy.model.PrivateMessage.create(params);
+    var recipents = params['to'] || [];
 
     if (!privateMessage.isValid()) {
       this.respondWith(privateMessage);
+    } else {
+      privateMessage.save(onSaved);
     }
-    else {
-      privateMessage.save(function(err, data) {
-        if (err) {
-          throw err;
-        }
-        self.respondWith(privateMessage, {status: err});
-      });
+    function onSaved(err, data) {
+      if (err) { throw err; }
+      privateMessage.deliverTo(recipents); // add association
+      self.respondWith(privateMessage, {status: err});
     }
   };
 
@@ -46,8 +44,7 @@ var PrivateMessages = function () {
       }
       if (!privateMessage) {
         throw new geddy.errors.NotFoundError();
-      }
-      else {
+      } else {
         self.respondWith(privateMessage);
       }
     });
@@ -57,16 +54,11 @@ var PrivateMessages = function () {
     var self = this;
 
     geddy.model.PrivateMessage.first(params.id, function(err, privateMessage) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       if (!privateMessage) {
         throw new geddy.errors.BadRequestError();
       } else {
-        geddy.model.User.all(function(err,data) {
-          if (err) { throw err; }
-          self.respond({privateMessage: privateMessage, users: data});
-        });
+        self.respondWith(privateMessage);
       }
     });
   };
@@ -82,12 +74,9 @@ var PrivateMessages = function () {
 
       if (!privateMessage.isValid()) {
         self.respondWith(privateMessage);
-      }
-      else {
+      } else {
         privateMessage.save(function(err, data) {
-          if (err) {
-            throw err;
-          }
+          if (err) { throw err; }
           self.respondWith(privateMessage, {status: err});
         });
       }
@@ -98,17 +87,12 @@ var PrivateMessages = function () {
     var self = this;
 
     geddy.model.PrivateMessage.first(params.id, function(err, privateMessage) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       if (!privateMessage) {
         throw new geddy.errors.BadRequestError();
-      }
-      else {
+      } else {
         geddy.model.PrivateMessage.remove(params.id, function(err) {
-          if (err) {
-            throw err;
-          }
+          if (err) { throw err; }
           self.respondWith(privateMessage);
         });
       }

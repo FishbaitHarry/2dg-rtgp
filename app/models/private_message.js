@@ -1,18 +1,19 @@
 var PrivateMessage = function () {
 
   this.defineProperties({
-    content: {type: 'string'},
-    status: {type: 'string'}
+    content: {type: 'string'}
   });
 
   this.validatesLength('content', {min: 5});
-  this.validatesWithFunction('status', function (status) {
-    return status == 'unread' || status == 'read';
-  }, {message: "Invalid status type."});
+  // this.validatesWithFunction('status', function (status) {
+  //   return status == 'unread' || status == 'read';
+  // }, {message: "Invalid status type."});
 
-  this.belongsTo('User');
+  this.hasMany('MessageDeliveries');
+  this.hasMany('Users', {through: 'MessageDeliveries'});
+  //this.belongsTo('From', {model: 'User'});
+
   /*
-
   // Can define methods for instances like this
   this.someMethod = function () {
     // Do some stuff
@@ -20,6 +21,16 @@ var PrivateMessage = function () {
   */
 
 };
+
+PrivateMessage.prototype.deliverTo = function deliverTo(recipents) {
+  recipents.forEach(addDelivery, this);
+  function addDelivery(userId) {
+    var delivery = geddy.model.MessageDelivery.create({
+      userId: userId, privateMessageId: this.id
+    });
+    delivery.save();
+  }
+}
 
 /*
 // Can also define them on the prototype

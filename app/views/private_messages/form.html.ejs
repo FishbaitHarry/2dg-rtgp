@@ -1,5 +1,5 @@
 <div class="control-group">
-  <label for="user" class="control-label">adresee</label>
+  <label for="user" class="control-label">from (not working yet)</label>
   <div class="controls">
     <%- selectTag(users, privateMessage.userId, {
       name: 'userId',
@@ -9,14 +9,19 @@
   </div>
 </div>
 <div class="control-group">
-  <label for="content" class="control-label">content</label>
+  <label for="to" class="control-label">to (list of ids)</label>
   <div class="controls">
-    <%- contentTag('input', privateMessage.content, {type:'text', class:'span6', name:'content'}) %>
+    <% for (var i in users) { %>
+      <label class="checkbox">
+        <%- contentTag('input', users[i]['id'], {type:'checkbox', value: users[i]['id'], name:'to'}) %>
+        <%- contentTag('span', users[i]['name']) %>
+      </label>
+    <% } %>
   </div>
 </div>
 <div class="control-group">
-  <label for="status" class="control-label">status</label>
+  <label for="content" class="control-label">content</label>
   <div class="controls">
-    <%- contentTag('input', privateMessage.status, {type:'text', class:'span6', name:'status'}) %>
+    <%- contentTag('input', privateMessage.content, {type:'text', class:'span6', name:'content'}) %>
   </div>
 </div>

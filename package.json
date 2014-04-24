@@ -1,7 +1,7 @@
 {
-  "name": "rtgp",
+  "name": "2dg-rtgp",
   "version": "0.0.1",
-  "author": "",
+  "author": "FishbaitHarry",
   "dependencies": {},
   "devDependencies": {
   	"geddy": "0.12.9"

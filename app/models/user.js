@@ -11,9 +11,11 @@ var User = function () {
   this.validatesLength('name', {min: 3});
   this.validatesFormat('role', /admin|master|user/, {message: 'Illegal role!'});
 
-  this.hasMany('PrivateMessages');
-  /*
+  this.hasMany('MessageDeliveries');
+  this.hasMany('PrivateMessages', {through: 'MessageDeliveries'});
+  //this.hasMany('SentMessages', {model: 'PrivateMessages'});
 
+  /*
   // Can define methods for instances like this
   this.someMethod = function () {
     // Do some stuff

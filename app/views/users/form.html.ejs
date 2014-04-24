@@ -10,3 +10,19 @@
     <%- contentTag('input', user.email, {type:'text', class:'span6', name:'email'}) %>
   </div>
 </div>
+<div class="control-group">
+  <label for="role" class="control-label">role</label>
+  <div class="controls">
+    <%- selectTag([
+      {display: 'user', value: 'user'},
+      {display: 'master', value: 'master'},
+      {display: 'admin', value: 'admin'},
+    ],
+    'user',
+    {
+      name: 'role',
+      valueField: 'value',
+      textField: 'display'
+    }); %>
+  </div>
+</div>

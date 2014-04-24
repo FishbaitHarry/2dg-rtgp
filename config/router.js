@@ -41,4 +41,5 @@ router.get('/').to('Main.index');
 
 router.resource('users');
 router.resource('private_messages');
+router.resource('message_deliveries');
 exports.router = router;

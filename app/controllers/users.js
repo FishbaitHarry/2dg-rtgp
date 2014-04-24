@@ -5,9 +5,7 @@ var Users = function () {
     var self = this;
 
     geddy.model.User.all(function(err, users) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       self.respondWith(users, {type:'User'});
     });
   };
@@ -22,12 +20,9 @@ var Users = function () {
 
     if (!user.isValid()) {
       this.respondWith(user);
-    }
-    else {
+    } else {
       user.save(function(err, data) {
-        if (err) {
-          throw err;
-        }
+        if (err) { throw err; }
         self.respondWith(user, {status: err});
       });
     }
@@ -37,13 +32,11 @@ var Users = function () {
     var self = this;
 
     geddy.model.User.first(params.id, function(err, user) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       if (!user) {
         throw new geddy.errors.NotFoundError();
       } else {
-        user.getPrivateMessages(function(err,data) {
+        user.getPrivateMessages(function(err, data) {
           self.respond({user: user.toJSON(), messages: data});
         });
       }
@@ -54,13 +47,10 @@ var Users = function () {
     var self = this;
 
     geddy.model.User.first(params.id, function(err, user) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       if (!user) {
         throw new geddy.errors.BadRequestError();
-      }
-      else {
+      } else {
         self.respondWith(user);
       }
     });
@@ -70,19 +60,14 @@ var Users = function () {
     var self = this;
 
     geddy.model.User.first(params.id, function(err, user) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       user.updateProperties(params);
 
       if (!user.isValid()) {
         self.respondWith(user);
-      }
-      else {
+      } else {
         user.save(function(err, data) {
-          if (err) {
-            throw err;
-          }
+          if (err) { throw err; }
           self.respondWith(user, {status: err});
         });
       }
@@ -93,17 +78,12 @@ var Users = function () {
     var self = this;
 
     geddy.model.User.first(params.id, function(err, user) {
-      if (err) {
-        throw err;
-      }
+      if (err) { throw err; }
       if (!user) {
         throw new geddy.errors.BadRequestError();
-      }
-      else {
+      } else {
         geddy.model.User.remove(params.id, function(err) {
-          if (err) {
-            throw err;
-          }
+          if (err) { throw err; }
           self.respondWith(user);
         });
       }
