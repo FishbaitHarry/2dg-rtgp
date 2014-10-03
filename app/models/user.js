@@ -7,7 +7,7 @@ var User = function () {
     role:      {type: 'string'},
     lastLogin: {type: 'time'}
   });
- 
+
   this.validatesLength('name', {min: 3});
   this.validatesFormat('role', /admin|master|user/, {message: 'Illegal role!'});
 
@@ -29,6 +29,27 @@ User.login = function login(email, password, callback) {
   function userFound(err, user) {
     // validate password here
     callback(err, user);
+  }
+};
+
+User.firstWithMsgs = function (id, callback) {
+  var user = null;
+  this.first(id, gotUser);
+
+  function gotUser(err, userData) {
+    if (err) { callback(err); }
+    else if (!userData) {
+      callback(new geddy.errors.NotFoundError());
+    } else {
+      user = userData;
+      user.getPrivateMessages(gotPrivs);
+    }
+  }
+
+  function gotPrivs(err, privMsgs) {
+    var responseData = {user: user.toJSON()};
+    responseData.user.messages = privMsgs;
+    callback(err, responseData);
   }
 };
 

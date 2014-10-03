@@ -15,8 +15,8 @@ var Users = function () {
   };
 
   this.create = function (req, resp, params) {
-    var self = this
-      , user = geddy.model.User.create(params);
+    var self = this;
+    var user = geddy.model.User.create(params);
 
     if (!user.isValid()) {
       this.respondWith(user);
@@ -31,16 +31,24 @@ var Users = function () {
   this.show = function (req, resp, params) {
     var self = this;
 
-    geddy.model.User.first(params.id, function(err, user) {
+    if (params['withMessages']) {
+      console.log(req.headers);
+      geddy.model.User.firstWithMsgs(params.id, respondWithMsgs);
+    } else {
+      geddy.model.User.first(params.id, respond);
+    }
+
+    function respond(err, data) {
       if (err) { throw err; }
-      if (!user) {
-        throw new geddy.errors.NotFoundError();
-      } else {
-        user.getPrivateMessages(function(err, data) {
-          self.respond({user: user.toJSON(), messages: data});
-        });
-      }
-    });
+      if (!data) { throw new geddy.errors.NotFoundError(); }
+      self.respondWith(data);
+    }
+
+    function respondWithMsgs(err, data) {
+      if (err) { throw err; }
+      if (!data) { throw new geddy.errors.NotFoundError(); }
+      self.respond(data, {template: 'showWithDetails'});
+    }
   };
 
   this.edit = function (req, resp, params) {
@@ -88,6 +96,19 @@ var Users = function () {
         });
       }
     });
+  };
+
+  // non-standard methods
+
+  this.getUserMessages = function (req, resp, params) {
+    var self = this;
+
+    geddy.model.User.firstWithMsgs(params.id, respond);
+
+    function respond(err, data) {
+      if (err) { throw err; }
+      self.respond(data.user.messages);
+    }
   };
 
 };

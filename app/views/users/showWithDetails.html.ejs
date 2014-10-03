@@ -19,3 +19,14 @@
   </div>
 </div>
 <% } -%><% } -%>
+
+<h2>Private Messages</h2>
+<% user.messages.forEach(function (msg) { %>
+<h4>
+  <%- linkTo(msg.content, {
+    controller: 'private_messages',
+    action: 'show',
+    id: msg.id
+  }); %>
+</h4>
+<% }); %>
