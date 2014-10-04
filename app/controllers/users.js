@@ -68,7 +68,7 @@ var Users = function () {
 
     geddy.model.User.first(params.id, function(err, user) {
       if (err) { throw err; }
-      user.updateProperties(params);
+      user.smartUpdateProperties(params);
 
       if (!user.isValid()) {
         self.respondWith(user);
@@ -97,7 +97,31 @@ var Users = function () {
     });
   };
 
-  // non-standard methods
+  // non-resourceful methods
+
+  this.showLogin = function (req, resp, params) {
+    var self = this;
+
+    if (self.session.get('userid')) {
+      self.flash.alert('You are already logged in.');
+      self.redirect('/users/' + self.session.get('userid'));
+    } else {
+      self.respond({params: params});
+    }
+  }
+
+  this.login = function (req, resp, params) {
+    var self = this;
+
+    geddy.model.User.login(params.email, params.password, result);
+
+    function result(err, user) {
+      if (err) { throw err; }
+      self.session.set('userid', user.id);
+      self.flash.success('Login successful.');
+      self.redirect('/');
+    }
+  };
 
   this.getUserMessages = function (req, resp, params) {
     var self = this;

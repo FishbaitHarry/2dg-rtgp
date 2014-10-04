@@ -39,6 +39,8 @@ router.get('/').to('Main.index');
 //   this.get('/print(.:format)').to('Hemispheres.print');
 // });
 
+router.post('/users/login').to('Users.login')
+router.get('/users/login').to('Users.showLogin')
 router.get('/users/:id/private_messages(.:format)').to('Users.getUserMessages');
 router.resource('users');
 

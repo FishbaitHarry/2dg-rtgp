@@ -11,6 +11,12 @@
   </div>
 </div>
 <div class="control-group">
+  <label for="password" class="control-label">password</label>
+  <div class="controls">
+    <%- contentTag('input', '', {type:'password', class:'span6', name:'password'}) %>
+  </div>
+</div>
+<div class="control-group">
   <label for="role" class="control-label">role</label>
   <div class="controls">
     <%- selectTag([
@@ -18,7 +24,7 @@
       {display: 'master', value: 'master'},
       {display: 'admin', value: 'admin'},
     ],
-    'user',
+    user.role,
     {
       name: 'role',
       valueField: 'value',

@@ -9,6 +9,7 @@ var User = function () {
   });
 
   this.validatesLength('name', {min: 3});
+  this.validatesLength('password', {min: 6});
   this.validatesFormat('role', /admin|master|user/, {message: 'Illegal role!'});
 
   this.hasMany('MessageDeliveries');
@@ -20,8 +21,16 @@ var User = function () {
 User.login = function login(email, password, callback) {
   User.first({email:email}, userFound);
   function userFound(err, user) {
-    // validate password here
-    callback(err, user);
+    if (!user || (user.password != password)) {
+      callback(new geddy.errors.UnauthorizedError(), null);
+    } else {
+      updateLastLogin(user);
+      callback(null, user);
+    }
+  }
+  function updateLastLogin(user) {
+    user.lastLogin = new Date();
+    user.save();
   }
 };
 
@@ -53,13 +62,10 @@ User.firstWithMsgs = function (id, callback) {
   }
 };
 
-/*
-// Can also define them on the prototype
-User.prototype.someOtherMethod = function () {
-  // Do some other stuff
+User.prototype.smartUpdateProperties = function(properties) {
+  // do not save an empty password
+  if (!properties.password) { delete properties.password; }
+  this.updateProperties(properties);
 };
-// Can also define static methods and properties
-User.someStaticProperty = 'YYZ';
-*/
 
 User = geddy.model.register('User', User);

@@ -1,0 +1,33 @@
+<div class="hero-unit">
+  <form id="user-form" class="form-horizontal" action="/users/login" method="POST">
+    <fieldset>
+      <legend>Enter your credentials</legend>
+      <% if(params.errors) { %>
+      <div class="control-group">
+        <ul>
+        <% for(var err in params.errors) { %>
+          <li><%= params.errors[err]; %></li>
+        <% } %>
+        </ul>
+      </div>
+      <% } %>
+
+      <div class="control-group">
+        <label for="email" class="control-label">email</label>
+        <div class="controls">
+          <%- contentTag('input', '', {type:'text', class:'span6', name:'email'}) %>
+        </div>
+      </div>
+      <div class="control-group">
+        <label for="password" class="control-label">password</label>
+        <div class="controls">
+          <%- contentTag('input', '', {type:'password', class:'span6', name:'password'}) %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%- contentTag('input', 'Login', {type: 'submit', class: 'btn btn-primary'}) %>
+      </div>
+    </fieldset>
+  </form>
+</div>
