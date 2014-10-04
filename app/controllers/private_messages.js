@@ -58,7 +58,10 @@ var PrivateMessages = function () {
       if (!privateMessage) {
         throw new geddy.errors.BadRequestError();
       } else {
-        self.respondWith(privateMessage);
+        geddy.model.User.all(function(err, data) {
+          if (err) { throw err; }
+          self.respond({privateMessage: privateMessage, users: data});
+        });
       }
     });
   };

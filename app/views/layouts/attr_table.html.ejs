@@ -1,0 +1,13 @@
+<table class="table table-condensed table-striped">
+  <% for(var i in model) { -%>
+    <tr>
+      <td>
+        <%= i %>
+      </td>
+      <td>
+        <i class="icon-list-alt"></i>
+        <span class="<%= i %>"><%= model[i] %></span>
+      </td>
+    </tr>
+  <% } -%>
+</table>

@@ -32,7 +32,6 @@ var Users = function () {
     var self = this;
 
     if (params['withMessages']) {
-      console.log(req.headers);
       geddy.model.User.firstWithMsgs(params.id, respondWithMsgs);
     } else {
       geddy.model.User.first(params.id, respond);

@@ -11,7 +11,7 @@ var PrivateMessage = function () {
 
   this.hasMany('MessageDeliveries');
   this.hasMany('Users', {through: 'MessageDeliveries'});
-  //this.belongsTo('From', {model: 'User'});
+  this.belongsTo('SentMessage', {model: 'User'});
 
   /*
   // Can define methods for instances like this

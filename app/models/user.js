@@ -13,14 +13,7 @@ var User = function () {
 
   this.hasMany('MessageDeliveries');
   this.hasMany('PrivateMessages', {through: 'MessageDeliveries'});
-  //this.hasMany('SentMessages', {model: 'PrivateMessages'});
-
-  /*
-  // Can define methods for instances like this
-  this.someMethod = function () {
-    // Do some stuff
-  };
-  */
+  this.hasMany('SentMessages', {model: 'PrivateMessages'});
 
 };
 
@@ -33,22 +26,29 @@ User.login = function login(email, password, callback) {
 };
 
 User.firstWithMsgs = function (id, callback) {
+  var responseData = {};
   var user = null;
   this.first(id, gotUser);
 
   function gotUser(err, userData) {
-    if (err) { callback(err); }
-    else if (!userData) {
+    if (err) {
+      callback(err);
+    } else if (!userData) {
       callback(new geddy.errors.NotFoundError());
     } else {
       user = userData;
-      user.getPrivateMessages(gotPrivs);
+      responseData.user = userData.toJSON();
+      userData.getPrivateMessages(gotPrivs);
     }
   }
 
   function gotPrivs(err, privMsgs) {
-    var responseData = {user: user.toJSON()};
     responseData.user.messages = privMsgs;
+    user.getSentMessages(gotSent);
+  }
+
+  function gotSent(err, sentMsgs) {
+    responseData.user.sent = sentMsgs;
     callback(err, responseData);
   }
 };
