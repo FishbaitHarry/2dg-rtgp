@@ -3,11 +3,14 @@
         {{> header}}
         <h2>Messages</h2>
 
-        <form class="new-task">
-            <input type="text" name="text" placeholder="Add message" />
-        </form>
         <ul>
             {{#each messages}}
+            {{> message}}
+            {{/each}}
+        </ul>
+        <h2>My messages:</h2>
+        <ul>
+            {{#each personalMessages}}
             {{> message}}
             {{/each}}
         </ul>
@@ -19,6 +22,7 @@
         <button class="delete">&times;</button>
         <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
         <span class="text">
+            <strong>{{senderName}}</strong> -> <strong>{{recipentName}}</strong>
             {{content}}
         </span>
     </li>
