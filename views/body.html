@@ -3,12 +3,6 @@
 </head>
 
 <body>
-    {{> messages}}
-    {{> users}}
+    {{> header }}
+    {{> Template.dynamic template=pageTemplate }}
 </body>
-
-<template name="welcome">
-    <div class="border-frame">
-      <h1>Hello World! {{text}}</h1>
-    </div>
-</template>

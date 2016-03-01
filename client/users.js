@@ -22,6 +22,6 @@ Template.user.events({
         event.target.text.value = "";
     },
     "click .delete": function () {
-        Messages.remove(this._id);
+        Meteor.users.remove(this._id);
     }
 });
