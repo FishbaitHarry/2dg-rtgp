@@ -1,13 +1,17 @@
-<template name="messages">
-    <div class="">
-        <h2>Messages</h2>
-
+<template name="allMessages">
+    <div class="all-messages">
+        <h2>Wszystkie wiadomości:</h2>
         <ul>
             {{#each messages}}
             {{> message}}
             {{/each}}
         </ul>
-        <h2>My messages:</h2>
+    </div>
+</template>
+
+<template name="personalMessages">
+    <div class="personal-messages">
+        <h2>Moje wiadomości:</h2>
         <ul>
             {{#each personalMessages}}
             {{> message}}

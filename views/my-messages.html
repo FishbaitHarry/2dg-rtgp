@@ -1,0 +1,19 @@
+<template name="myMessages">
+    {{> personalMessages}}
+    {{> messageForm}}
+</template>
+
+<template name="messageForm">
+    <form class="message-form">
+        <label>
+            <span>Adresat:</span>
+            <select name="recipent">
+                {{#each users}}
+                    <option value="{{_id}}" label="{{username}}"></option>
+                {{/each}}
+            </select>
+        </label>
+        <textarea name="text" placeholder="Treść wiadomości"></textarea>
+        <button type="submit">Wyślij wiadomość</button>
+    </form>
+</template>
