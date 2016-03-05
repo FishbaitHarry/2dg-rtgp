@@ -1,20 +1,23 @@
 <template name="header">
-    <header>
-        <h1>
-            Road to Glory
-        </h1>
-    </header>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
-            <ul class="nav navbar-nav clickable">
-                <li><a href="#index">Index</a></li>
-                <li><a href="#allMessages">Messages</a></li>
-                <li><a href="#myMessages">Moje Wiadomości</a></li>
-                <li><a href="#users">Użytkownicy</a></li>
-            </ul>
+            <header class="navbar-header">
+                <span class="navbar-brand">
+                    Road to Glory
+                </span>
+            </header>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Zalogowany jako: {{> loginButtons}}</a></li>
             </ul>
         </div>
     </nav>
+</template>
+
+<template name="navigation">
+    <ul class="nav nav-pills nav-stacked clickable">
+        <li><a href="#index">Index</a></li>
+        <li><a href="#allMessages">Messages</a></li>
+        <li><a href="#myMessages">Moje Wiadomości</a></li>
+        <li><a href="#users">Użytkownicy</a></li>
+    </ul>
 </template>
