@@ -1,0 +1,54 @@
+<template name="myOrders">
+    <p><a href="#newOrder" class="new-order-link">Nowy Rozkaz</a></p>
+    {{#each orders}}
+        <li>{{> orderSummary}}</li>
+    {{/each}}
+</template>
+
+<template name="orderSummary">
+    <a href="#orderPage">
+        <span class={{icon}}></span>
+        <strong>{{senderName}}</strong>
+        <code>{{createdAt}}</code>
+        <mark>Tura: {{createdAtTurn}}</mark>
+        <em>{{contentShort}}</em>
+    </a>
+</template>
+
+<template name="orderPage">
+    {{#with currentOrder}}
+        {{> orderDetails}}
+    {{/with}}
+</template>
+
+<template name="orderDetails">
+    <p>
+        <ul>
+        <li>createdAt: {{createdAt}}</li>
+        <li>modifiedAt: {{modifiedAt}}</li>
+        <li>createdAtTurn: {{createdAtTurn}}</li>
+        <li>remindAtTurn: {{remindAtTurn}}</li>
+        <li>senderName: {{senderName}}</li>
+        </ul>
+    </p>
+    <p class="order-content" contenteditable >
+        {{#if userEditable}}contenteditable{{/if}}
+        Treść rozkazu {{content}}
+    </p>
+    <p>
+        Status rozkazu: {{status}}
+    </p>
+    <p class="order-reply" >
+        {{#if isAdmin}}contenteditable{{/if}}
+        {{reply}}
+    </p>
+</template>
+
+<template name="newOrder">
+    <form class="message-form">
+        <p class="order-content" contenteditable >
+            Treść rozkazu
+        </p>
+        <button type="submit">Wyślij rozkaz</button>
+    </form>
+</template>
