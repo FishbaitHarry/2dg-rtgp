@@ -2,25 +2,31 @@
     <div class="">
         <h2>Users</h2>
 
-        <ul>
-            {{#each users}}
-            {{> user}}
-            {{/each}}
-        </ul>
+        <table class="table table-striped">
+            <tbody>
+                {{#each users}}
+                {{> user}}
+                {{/each}}
+            </tbody>
+        </table>
     </div>
 </template>
 
 <template name="user">
-    <li class="{{#if checked}}checked{{/if}}">
-        <button class="delete">&times;</button>
-        <span class="text">
+    <tr class="{{#if checked}}checked{{/if}}">
+        <td>
+            <button class="delete">&times;</button>
+        </td>
+        <td class="text">
             <strong>{{username}}</strong>
             {{role}}
-        </span>
-        {{#if currentUser}}
-        <form class="send-message">
-            <input type="text" name="text" placeholder="Put message here" />
-        </form>
-        {{/if}}
-    </li>
+        </td>
+        <td>
+            {{#if currentUser}}
+            <form class="send-message">
+                <input type="text" name="text" placeholder="Put message here" />
+            </form>
+            {{/if}}
+        </td>
+    </tr>
 </template>

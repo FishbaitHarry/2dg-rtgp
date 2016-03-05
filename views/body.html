@@ -3,6 +3,8 @@
 </head>
 
 <body>
-    {{> header }}
-    {{> Template.dynamic template=pageTemplate }}
+    <div class="container">
+        <div class="row">{{> header }}</div>
+        {{> Template.dynamic template=pageTemplate }}
+    </div>
 </body>
