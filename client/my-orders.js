@@ -1,3 +1,10 @@
+Template.registerHelper('orderStatusIcon', function(status) {
+    if (status == 'unread') return 'glyphicon glyphicon-eye-close';
+    if (status == 'read') return 'glyphicon glyphicon-eye-open';
+    if (status == 'inprogress') return 'glyphicon glyphicon-fire';
+    if (status == 'executed') return 'glyphicon glyphicon-check';
+});
+
 Template.myOrders.helpers({
     orders: function() {
         return CustomOrders.find({
@@ -24,14 +31,8 @@ Template.orderSummary.helpers({
         }
         return this.senderName;
     },
-    icon: function() {
-        if (this.status == 'unread') return 'glyphicon glyphicon-eye-close';
-        if (this.status == 'read') return 'glyphicon glyphicon-eye-open';
-        if (this.status == 'inprogress') return 'glyphicon glyphicon-fire';
-        if (this.status == 'executed') return 'glyphicon glyphicon-check';
-    },
     contentShort: function() {
-        return this.content.slice(0,12).concat('...');
+        return this.content.slice(0,16).concat('...');
     },
     createdAt: function() {
         return this.createdAt.toISOString().slice(0,10);
@@ -55,6 +56,34 @@ Template.orderPage.helpers({
         return CustomOrders.findOne({_id: orderId},{});
     }
 });
+
+Template.orderDetails.helpers({
+    contentAttrs: function() {
+        return this.userEditable ? {contenteditable: ''} : {};
+    },
+    isAdmin: function() {
+        return checkPrivilege(Meteor.user(), 'master');
+    },
+    reply: function() {
+        return this.reply || 'N/A';
+    }
+});
+
+Template.orderDetails.events({
+    'input [contenteditable]': function() {
+        Template.instance().$('button').prop('disabled', false);
+    },
+    'click button.save': function() {
+        var setOptions = {modifiedAt: new Date()};
+        var content = Template.instance().$('.order-content').text();
+        var reply = Template.instance().$('.order-reply').text();
+        var status = Template.instance().$('select[name=status]').val();
+        if (content) setOptions.content = content;
+        if (reply) setOptions.reply = reply;
+        if (status) setOptions.status = status;
+        CustomOrders.update(this._id, {$set: setOptions});
+    }
+})
 
 Template.newOrder.events({
     "submit form": function (event) {

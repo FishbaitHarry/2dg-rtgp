@@ -3,6 +3,12 @@
         <h2>Users</h2>
 
         <table class="table table-striped">
+            <thead>
+                <td>usuń</td>
+                <td>rola</td>
+                <td>nick</td>
+                <td>wiadomość</td>
+            </thead>
             <tbody>
                 {{#each users}}
                 {{> user}}
@@ -17,9 +23,15 @@
         <td>
             <button class="delete">&times;</button>
         </td>
+        <td>
+            <select name="role">
+                <option value="user" selected={{isUser}} label="User"></option>
+                <option value="master" selected={{isMaster}} label="Master"></option>
+                <option value="admin" selected={{isAdmin}} label="Admin"></option>
+            </select>
+        </td>
         <td class="text">
             <strong>{{username}}</strong>
-            {{role}}
         </td>
         <td>
             {{#if currentUser}}

@@ -5,6 +5,18 @@ Template.users.helpers({
     }
 });
 
+Template.user.helpers({
+    isUser: function() {
+        return this.profile.role == 'user';
+    },
+    isMaster: function() {
+        return this.profile.role == 'master';
+    },
+    isAdmin: function() {
+        return this.profile.role == 'admin';
+    }
+});
+
 Template.user.events({
     "submit .send-message": function (event) {
         event.preventDefault();
@@ -20,6 +32,13 @@ Template.user.events({
         });
 
         event.target.text.value = "";
+    },
+    "input select": function(event) {
+        var newRole = $(event.target).val();
+        Meteor.call('Users.updateUserRole', this._id, newRole, onSuccess);
+        function onSuccess() {
+            console.log(newRole)
+        }
     },
     "click .delete": function () {
         Meteor.users.remove(this._id);

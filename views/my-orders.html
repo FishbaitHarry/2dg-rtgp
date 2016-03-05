@@ -7,7 +7,7 @@
 
 <template name="orderSummary">
     <a href="#orderPage">
-        <span class={{icon}}></span>
+        <span class={{orderStatusIcon status}}></span>
         <strong>{{senderName}}</strong>
         <code>{{createdAt}}</code>
         <mark>Tura: {{createdAtTurn}}</mark>
@@ -31,15 +31,14 @@
         <li>senderName: {{senderName}}</li>
         </ul>
     </p>
-    <p class="order-content" contenteditable >
-        {{#if userEditable}}contenteditable{{/if}}
-        Treść rozkazu {{content}}
+    <p><button type="button" class="btn save" disabled>Zapisz Zmiany</button></p>
+    <p class="order-content well" contenteditable={{userEditable}} >
+        {{content}}
     </p>
-    <p>
-        Status rozkazu: {{status}}
+    <p class="alert alert-info">
+        Status rozkazu: {{status}} <span class={{orderStatusIcon status}}></span>
     </p>
-    <p class="order-reply" >
-        {{#if isAdmin}}contenteditable{{/if}}
+    <p class="order-reply well" contenteditable={{isAdmin}}>
         {{reply}}
     </p>
 </template>

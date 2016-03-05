@@ -8,3 +8,16 @@ Messages.schema = new SimpleSchema({
     recipentName: {type: String}
 });
 Messages.attachSchema(Messages.schema);
+
+// TODO: add security in future
+// Meteor.publish({'Messages.myMessages': function () {
+//     if (!this.userId) {
+//         return this.ready();
+//     }
+//     return Messages.find({
+//         $or: [{recipent: this.userId},{sender: this.userId}]
+//     }, {
+//         sort: {createdAt: -1},
+//         limit: 100
+//     });
+// }});
