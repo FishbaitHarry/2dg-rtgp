@@ -1,5 +1,11 @@
 <template name="myOrders">
-    <p><a href="#newOrder" class="new-order-link">Nowy Rozkaz</a></p>
+    <p><a href="#newOrder" class="new-order-link btn btn-default">Nowy Rozkaz</a></p>
+    {{#each orders}}
+        <li>{{> orderSummary}}</li>
+    {{/each}}
+</template>
+
+<template name="allOrders">
     {{#each orders}}
         <li>{{> orderSummary}}</li>
     {{/each}}
@@ -31,7 +37,7 @@
         <li>senderName: {{senderName}}</li>
         </ul>
     </p>
-    <p><button type="button" class="btn save" disabled>Zapisz Zmiany</button></p>
+    <p><button type="button" class="btn btn-default save" disabled>Zapisz Zmiany</button></p>
     <p class="order-content well" contenteditable={{userEditable}} >
         {{content}}
     </p>

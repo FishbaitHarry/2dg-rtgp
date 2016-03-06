@@ -14,11 +14,13 @@
 </template>
 
 <template name="navigation">
-    <ul class="nav nav-pills nav-stacked clickable">
-        <li><a href="#index">Index</a></li>
-        <li><a href="#allMessages">Messages</a></li>
-        <li><a href="#myMessages">Moje Wiadomości</a></li>
-        <li><a href="#users">Użytkownicy</a></li>
-        <li><a href="#myOrders">Rozkazy</a></li>
+    <ul class="nav nav-pills nav-stacked">
+        {{#each pageLinks}}
+        {{> pageLink}}
+        {{/each}}
     </ul>
+</template>
+
+<template name="pageLink">
+    <li class={{classes}}><a href="#">{{label}}</a></li>
 </template>

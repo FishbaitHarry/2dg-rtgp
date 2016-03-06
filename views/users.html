@@ -4,7 +4,7 @@
 
         <table class="table table-striped">
             <thead>
-                <td>usuń</td>
+                {{#if canEditRoles}}<td>usuń</td>{{/if}}
                 <td>rola</td>
                 <td>nick</td>
                 <td>wiadomość</td>
@@ -19,10 +19,12 @@
 </template>
 
 <template name="user">
-    <tr class="{{#if checked}}checked{{/if}}">
+    <tr>
+        {{#if canEditRoles}}
         <td>
             <button class="delete">&times;</button>
         </td>
+        {{/if}}
         <td>
             {{#if canEditRoles}}
             <select name="role" disabled={{disabled}}>
