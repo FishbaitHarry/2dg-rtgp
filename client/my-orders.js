@@ -83,7 +83,7 @@ Template.orderDetails.events({
         Template.instance().$('button').prop('disabled', false);
     },
     'click button.save': function() {
-        var setOptions = {modifiedAt: new Date()};
+        var setOptions = {};
         var content = Template.instance().$('.order-content').text();
         var reply = Template.instance().$('.order-reply').text();
         var status = Template.instance().$('select[name=status]').val();
@@ -102,8 +102,6 @@ Template.newOrder.events({
         CustomOrders.insert({
             content: text,
             status: 'unread',
-            createdAt: new Date(),
-            modifiedAt: new Date(),
             createdAtTurn: 1,
             userEditable: true,
             sender: Meteor.userId(),

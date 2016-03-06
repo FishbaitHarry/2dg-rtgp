@@ -1,0 +1,30 @@
+
+<template name="listAreas">
+    <ul>
+        {{#each areas}}
+        {{> areaSummary}}
+        {{/each}}
+    </ul>
+</template>
+
+<template name="areaSummary">
+    <li>
+        <strong>{{name}}</strong>
+        (<code>{{_id}}</code>)
+        <mark>{{ownerName}}</mark>
+        {{#if isMaster}}
+        <a href="#" class="btn btn-default edit">edycja</a>
+        {{/if}}
+        {{#collapsible}}
+            {{> areaDetails}}
+        {{/collapsible}}
+    </li>
+</template>
+
+<template name="areaDetails">
+    <p>{{description}}</p>
+    <h3>sąsiaduje z:</h3>
+    <ul>{{#each connections}}<li>{{toName}}</li>{{/each}}</ul>
+    <h3>Typ terenu:</h3>
+    <p>{{areaType}}</p>
+</template>

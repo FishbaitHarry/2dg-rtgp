@@ -9,6 +9,7 @@ Meteor.methods({
     }
 });
 
+// globally available helper function
 checkPrivilege = function checkPrivilege(user, role) {
     try {
         var userRole = user.profile.role;

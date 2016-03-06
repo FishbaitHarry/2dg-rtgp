@@ -3,8 +3,8 @@ CustomOrders.schema = new SimpleSchema({
     content: {type: String},
     status: {type: String, allowedValues: ['unread', 'read', 'inprogress', 'executed']},
     reply: {type: String, optional: true},
-    createdAt: {type: Date},
-    modifiedAt: {type: Date},
+    createdAt: {type: Date, autoValue: setCreatedAt},
+    modifiedAt: {type: Date, autoValue: setModifiedAt},
     createdAtTurn: {type: Number},
     remindAtTurn: {type: Number, optional: true},
     userEditable: {type: Boolean},
@@ -12,3 +12,14 @@ CustomOrders.schema = new SimpleSchema({
     senderName: {type: String}
 });
 CustomOrders.attachSchema(CustomOrders.schema);
+
+function setCreatedAt() {
+    if (this.isInsert) {
+        return new Date();
+    } else {
+        this.unset();
+    }
+}
+function setModifiedAt() {
+    return new Date();
+}

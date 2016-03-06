@@ -1,0 +1,19 @@
+<template name="addAreas">
+    <h2>Lista obszarów</h2>
+    {{> listAreas}}
+    <hr/>
+    <h2>Nowy obszar</h2>
+    {{> quickForm
+        collection="GameAreas"
+        id="insertGameArea"
+        omitFields="owner,ownerName"
+        type="insert"}}
+</template>
+
+<template name="editArea">
+    {{#autoForm collection="GameAreas" doc=area type="update" id="editArea"}}
+        {{> afQuickFields omitFields="owner,ownerName"}}
+        {{> afFieldInput name="owner" options=userSelect}}
+        {{> afFieldInput type="submit"}}
+    {{/autoForm}}
+</template>

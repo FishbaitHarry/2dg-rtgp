@@ -1,0 +1,8 @@
+<template name="collapsible">
+    {{#if showCollapsible}}
+        <button type="button" class="btn btn-default hide-collapsible">less</button>
+        {{> Template.contentBlock}}
+    {{else}}
+        <button type="button" class="btn btn-default show-collapsible">more</button>
+    {{/if}}
+</template>

@@ -23,3 +23,5 @@ accounts-password
 aldeed:simple-schema
 aldeed:collection2
 less
+aldeed:autoform
+reactive-var

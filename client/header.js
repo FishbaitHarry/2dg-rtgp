@@ -4,14 +4,16 @@ Template.navigation.helpers({
         if (checkPrivilege(Meteor.user(), 'user')) {
             pageLinks.push(
                 {template: "myMessages", label: "Moje Wiadomości"},
-                {template: "users", label: "Użytkownicy"},
                 {template: "myOrders", label: "Rozkazy"},
+                {template: "listAreas", label: "Świat"},
+                {template: "users", label: "Użytkownicy"},
             );
         }
         if (checkPrivilege(Meteor.user(), 'master')) {
             pageLinks.push(
                 {template: "allMessages", label: "Wszystkie Wiadomości"},
-                {template: "allOrders", label: "Wszystkie Rozkazy"}
+                {template: "allOrders", label: "Wszystkie Rozkazy"},
+                {template: "addAreas", label: "Dodaj Obszary"}
             );
         }
         return pageLinks;
