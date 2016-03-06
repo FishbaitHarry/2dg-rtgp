@@ -9,7 +9,7 @@ Meteor.methods({
     }
 });
 
-function checkPrivilege(user, role) {
+checkPrivilege = function checkPrivilege(user, role) {
     try {
         var userRole = user.profile.role;
         if (role == 'user') return true;

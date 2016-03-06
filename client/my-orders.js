@@ -61,7 +61,7 @@ Template.orderDetails.helpers({
     contentAttrs: function() {
         return this.userEditable ? {contenteditable: ''} : {};
     },
-    isAdmin: function() {
+    canReply: function() {
         return checkPrivilege(Meteor.user(), 'master');
     },
     reply: function() {
@@ -70,7 +70,7 @@ Template.orderDetails.helpers({
 });
 
 Template.orderDetails.events({
-    'input [contenteditable]': function() {
+    'input [contenteditable],select': function() {
         Template.instance().$('button').prop('disabled', false);
     },
     'click button.save': function() {

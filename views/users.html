@@ -24,11 +24,15 @@
             <button class="delete">&times;</button>
         </td>
         <td>
-            <select name="role">
+            {{#if canEditRoles}}
+            <select name="role" disabled={{disabled}}>
                 <option value="user" selected={{isUser}} label="User"></option>
                 <option value="master" selected={{isMaster}} label="Master"></option>
                 <option value="admin" selected={{isAdmin}} label="Admin"></option>
             </select>
+            {{else}}
+            <mark>{{profile.role}}</mark>
+            {{/if}}
         </td>
         <td class="text">
             <strong>{{username}}</strong>

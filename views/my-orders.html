@@ -37,8 +37,17 @@
     </p>
     <p class="alert alert-info">
         Status rozkazu: {{status}} <span class={{orderStatusIcon status}}></span>
+        {{#if canReply}}
+        Nowy status:
+        <select name="status">
+            <option value="unread" label="unread"></option>
+            <option value="read" label="read"></option>
+            <option value="inprogress" label="inprogress"></option>
+            <option value="executed" label="executed"></option>
+        </select>
+        {{/if}}
     </p>
-    <p class="order-reply well" contenteditable={{isAdmin}}>
+    <p class="order-reply well" contenteditable={{canReply}}>
         {{reply}}
     </p>
 </template>

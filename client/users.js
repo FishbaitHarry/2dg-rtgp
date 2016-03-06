@@ -6,6 +6,9 @@ Template.users.helpers({
 });
 
 Template.user.helpers({
+    canEditRoles: function() {
+        return checkPrivilege(Meteor.user(), 'admin');
+    },
     isUser: function() {
         return this.profile.role == 'user';
     },
