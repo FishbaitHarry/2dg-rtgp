@@ -52,9 +52,7 @@ Template.user.events({
     "input select": function(event) {
         var newRole = $(event.target).val();
         Meteor.call('Users.updateUserRole', this._id, newRole, onSuccess);
-        function onSuccess() {
-            console.log(newRole)
-        }
+        function onSuccess() {}
     },
     "click .delete": function () {
         Meteor.users.remove(this._id);

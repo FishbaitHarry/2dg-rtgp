@@ -1,0 +1,46 @@
+<template name="allUnits">
+    <!-- TODO: meteor-tabular -->
+    <ul>
+    {{#each units}}
+        <li>{{> unitSummary}}</li>
+    {{/each}}
+    </ul>
+</template>
+
+<template name="myUnits">
+    <!-- TODO: meteor-tabular -->
+    <ul>
+    {{#each units}}
+        <li>{{> unitSummary}}</li>
+    {{/each}}
+    </ul>
+</template>
+
+<template name="unitSummary">
+    <strong>{{name}}</strong>
+    ({{locationName}})
+    <mark>{{ownerName}}</mark>
+    {{#if isMaster}}
+        <a href="#" class="btn btn-default edit">edycja</a>
+    {{/if}}
+</template>
+
+<template name="addUnit">
+    <h2>Nowy oddział</h2>
+    {{#autoForm collection="ActiveUnits" type="insert" id="addUnit"}}
+        {{> afQuickFields omitFields="owner,ownerName,location,locationName"}}
+        {{> afQuickField name="owner" options=userSelect}}
+        {{> afQuickField name="location" options=gameAreaSelect}}
+        {{> afFieldInput type="submit"}}
+    {{/autoForm}}
+</template>
+
+<template name="editUnit">
+    <h2>Edycja oddziału</h2>
+    {{#autoForm collection="ActiveUnits" doc=activeUnit type="update" id="editUnit"}}
+        {{> afQuickFields omitFields="owner,ownerName,location,locationName"}}
+        {{> afQuickField name="owner" options=userSelect}}
+        {{> afQuickField name="location" options=gameAreaSelect}}
+        {{> afFieldInput type="submit"}}
+    {{/autoForm}}
+</template>

@@ -4,16 +4,19 @@ Template.navigation.helpers({
         if (checkPrivilege(Meteor.user(), 'user')) {
             pageLinks.push(
                 {template: "myMessages", label: "Moje Wiadomości"},
-                {template: "myOrders", label: "Rozkazy"},
+                {template: "myOrders", label: "Moje Rozkazy"},
+                {template: "myUnits", label: "Moje Oddziały"},
                 {template: "listAreas", label: "Świat"},
-                {template: "users", label: "Użytkownicy"},
+                {template: "users", label: "Użytkownicy"}
             );
         }
         if (checkPrivilege(Meteor.user(), 'master')) {
             pageLinks.push(
                 {template: "allMessages", label: "Wszystkie Wiadomości"},
                 {template: "allOrders", label: "Wszystkie Rozkazy"},
-                {template: "addAreas", label: "Dodaj Obszary"}
+                {template: "addAreas", label: "Dodaj Obszary"},
+                {template: "allUnits", label: "Wszystkie Oddziały"},
+                {template: "addUnit", label: "Dodaj Oddział"}
             );
         }
         return pageLinks;
