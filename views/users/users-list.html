@@ -1,0 +1,19 @@
+<template name="users">
+    <div class="">
+        <h2>Users</h2>
+
+        <table class="table table-striped">
+            <thead>
+                {{#if canEditRoles}}<td>usuń</td>{{/if}}
+                <td>rola</td>
+                <td>nick</td>
+                <td>wiadomość</td>
+            </thead>
+            <tbody>
+                {{#each users}}
+                {{> user}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
