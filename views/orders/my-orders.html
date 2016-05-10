@@ -1,0 +1,6 @@
+<template name="myOrders">
+    <p><a href="#" class="new-order-link btn btn-default">Nowy Rozkaz</a></p>
+    {{#each orders}}
+        <li>{{> orderSummary}}</li>
+    {{/each}}
+</template>

@@ -1,32 +1,3 @@
-<template name="myOrders">
-    <p><a href="#newOrder" class="new-order-link btn btn-default">Nowy Rozkaz</a></p>
-    {{#each orders}}
-        <li>{{> orderSummary}}</li>
-    {{/each}}
-</template>
-
-<template name="allOrders">
-    {{#each orders}}
-        <li>{{> orderSummary}}</li>
-    {{/each}}
-</template>
-
-<template name="orderSummary">
-    <a href="#orderPage">
-        <span class={{orderStatusIcon status}}></span>
-        <strong>{{senderName}}</strong>
-        <code>{{createdAt}}</code>
-        <mark>Tura: {{createdAtTurn}}</mark>
-        <em>{{contentShort}}</em>
-    </a>
-</template>
-
-<template name="orderPage">
-    {{#with currentOrder}}
-        {{> orderDetails}}
-    {{/with}}
-</template>
-
 <template name="orderDetails">
     <p>
         <ul>
@@ -56,13 +27,4 @@
     <p class="order-reply well" contenteditable={{canReply}}>
         {{reply}}
     </p>
-</template>
-
-<template name="newOrder">
-    <form class="message-form">
-        <p class="order-content" contenteditable >
-            Treść rozkazu
-        </p>
-        <button type="submit">Wyślij rozkaz</button>
-    </form>
 </template>
