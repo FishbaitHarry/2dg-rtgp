@@ -1,0 +1,10 @@
+<template name="allMessages">
+    <div>
+        <h2>Wszystkie wiadomości:</h2>
+        <ul>
+            {{#each messages}}
+                {{> messagesListItem}}
+            {{/each}}
+        </ul>
+    </div>
+</template>

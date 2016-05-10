@@ -1,7 +1,3 @@
-Template.myMessages.helpers({
-
-});
-
 Template.messageForm.helpers({
     users: function() {
         return Meteor.users.find({}, {
