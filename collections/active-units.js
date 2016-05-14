@@ -6,10 +6,23 @@ ActiveUnits.statsSchema = new SimpleSchema({
     black: {type: Number},
     blue: {type: Number}
 });
+ActiveUnits.propsSchema = new SimpleSchema({
+    cavalry: {type: Boolean, optional: true},
+    infantry: {type: Boolean, optional: true},
+    ranged: {type: Boolean, optional: true},
+    flying: {type: Boolean, optional: true},
+    flamebreathing: {type: Boolean, optional: true},
+    monster: {type: Boolean, optional: true},
+    slayer: {type: Boolean, optional: true},
+    necro: {type: Boolean, optional: true},
+    machine: {type: Boolean, optional: true},
+    demon: {type: Boolean, optional: true},
+});
 ActiveUnits.schema = new SimpleSchema({
     name: {type: String},
     description: {type: String},
     stats: {type: ActiveUnits.statsSchema, optional: true},
+    props: {type: ActiveUnits.propsSchema},
     owner: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
     ownerName: {type: String, autoValue: onOwnerName},
     location: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
