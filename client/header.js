@@ -16,7 +16,8 @@ Template.navigation.helpers({
                 {template: "allOrders", label: "Wszystkie Rozkazy"},
                 {template: "addAreas", label: "Dodaj Obszary"},
                 {template: "allUnits", label: "Wszystkie Oddziały"},
-                {template: "addUnit", label: "Dodaj Oddział"}
+                {template: "addUnit", label: "Dodaj Oddział"},
+                {template: "exporter", label: "Import/Export Danych"}
             );
         }
         return pageLinks;
