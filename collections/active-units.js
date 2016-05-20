@@ -21,7 +21,7 @@ ActiveUnits.propsSchema = new SimpleSchema({
 ActiveUnits.schema = new SimpleSchema({
     name: {type: String},
     description: {type: String},
-    stats: {type: ActiveUnits.statsSchema, optional: true},
+    stats: {type: ActiveUnits.statsSchema},
     props: {type: ActiveUnits.propsSchema},
     owner: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
     ownerName: {type: String, autoValue: onOwnerName},

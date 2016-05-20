@@ -1,0 +1,8 @@
+<template name="unitSummary">
+    <strong>{{name}}</strong>
+    ({{locationName}})
+    <mark>{{ownerName}}</mark>
+    {{#if isMaster}}
+        <a href="#" class="btn btn-default edit">edycja</a>
+    {{/if}}
+</template>

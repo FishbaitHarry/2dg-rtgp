@@ -1,0 +1,9 @@
+<template name="addUnit">
+    <h2>Nowy oddział</h2>
+    {{#autoForm collection="ActiveUnits" type="insert" id="addUnit"}}
+        {{> afQuickFields omitFields="owner,ownerName,location,locationName"}}
+        {{> afQuickField name="owner" options=userSelect}}
+        {{> afQuickField name="location" options=gameAreaSelect}}
+        {{> afFieldInput type="submit"}}
+    {{/autoForm}}
+</template>

@@ -54,5 +54,15 @@ function importData(loadEvent) {
 
 function importCollection(collection, modelsArray) {
     if (!modelsArray) return;
-    // TODO: j-j-j-just jam it in!
+    modelsArray.filter(function (model) {
+        return model._id
+    }).forEach(function (model) {
+        var modelAttrs = $.extend(true, {}, model);
+        collection.update(model._id, {$set: modelAttrs});
+    });
+    modelsArray.filter(function (model) {
+        return !model._id
+    }).forEach(function (model) {
+        collection.insert(model);
+    });
 }
