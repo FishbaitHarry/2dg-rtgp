@@ -54,15 +54,17 @@ function importData(loadEvent) {
 
 function importCollection(collection, modelsArray) {
     if (!modelsArray) return;
-    modelsArray.filter(function (model) {
-        return model._id
-    }).forEach(function (model) {
-        var modelAttrs = $.extend(true, {}, model);
-        collection.update(model._id, {$set: modelAttrs});
+    var modelsWithId = modelsArray.filter(model => model._id);
+    var modelsNew = modelsArray.filter(model => !model._id);
+    modelsWithId.forEach(function (model) {
+        var modelExists = collection.findOne(model._id);
+        if (modelExists) {
+            collection.update(model._id, {$set: model});
+        } else {
+            modelsNew.push(model);
+        }
     });
-    modelsArray.filter(function (model) {
-        return !model._id
-    }).forEach(function (model) {
+    modelsNew.forEach(function (model) {
         collection.insert(model);
     });
 }

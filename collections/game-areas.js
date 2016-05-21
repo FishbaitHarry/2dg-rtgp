@@ -8,6 +8,8 @@ GameAreas.connectionSchema = new SimpleSchema({
 GameAreas.schema = new SimpleSchema({
     name: {type: String},
     description: {type: String},
+    x: {type: Number, decimal: true},
+    y: {type: Number, decimal: true},
     areaType: {type: String, allowedValues: ['normal', 'rough', 'water']},
     owner: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
     ownerName: {type: String, autoValue: onOwnerName},
@@ -28,6 +30,9 @@ function onOwnerName() {
 
 function onFactionName() {
     var owner = this.field('owner');
+    if (!owner.isSet) {
+        return 'Neutral';
+    }
     if (owner.isSet && !this.isSet) {
         var user = Meteor.users.findOne({_id:owner.value});
         return user.profile.factionName;

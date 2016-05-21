@@ -9,17 +9,18 @@
       <span class="label label-danger">{{stats.red}}</span>
       <span class="label label-success">{{stats.green}}</span>
     </span>
-    {{#if isMaster}}
-        <a href="#" class="btn btn-default edit">edycja</a>
-    {{/if}}
     {{#collapsible}}
       <div class="well well-sm">
+        <h4>{{name}} (<code>{{_id}}</code>)</h4>
         <h4>Opis:</h4>
         <p>{{description}}</p>
         <h4>Specjalne:</h4>
         <p>{{propsSummary}}</p>
         <h4>Właściciel:</h4>
         <p>{{ownerName}}</p>
+        {{#if isMaster}}
+            <button type="button" class="btn btn-default edit">edycja</button>
+        {{/if}}
       </div>
     {{/collapsible}}
 </template>
