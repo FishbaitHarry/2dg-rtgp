@@ -10,11 +10,7 @@
 <template name="areaSummary">
     <li>
         <strong>{{name}}</strong>
-        (<code>{{_id}}</code>)
         <mark>{{ownerName}}</mark>
-        {{#if isMaster}}
-        <a href="#" class="btn btn-default edit">edycja</a>
-        {{/if}}
         {{#collapsible}}
             {{> areaDetails}}
         {{/collapsible}}
@@ -22,9 +18,16 @@
 </template>
 
 <template name="areaDetails">
+  <div class="well well-sm">
+    <h4>{{name}} (<code>{{_id}}</code>)</h4>
     <p>{{description}}</p>
-    <h3>sąsiaduje z:</h3>
-    <ul>{{#each connections}}<li>{{toName}}</li>{{/each}}</ul>
-    <h3>Typ terenu:</h3>
+    <h4>Typ terenu:</h4>
     <p>{{areaType}}</p>
+    <h4>sąsiaduje z:</h4>
+    <ul>{{#each connections}}<li>{{toName}}</li>{{/each}}</ul>
+    {{#if isMaster}}
+        <button type="button" class="btn btn-default edit">edycja</button>
+        <button type="button" class="btn btn-danger remove">usuń</button>
+    {{/if}}
+  </div>
 </template>

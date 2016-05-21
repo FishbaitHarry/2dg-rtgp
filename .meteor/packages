@@ -18,10 +18,13 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
+
 accounts-ui
 accounts-password
-aldeed:simple-schema
+
+aldeed:simple-schema    # Collection validation.
 aldeed:collection2
-less
 aldeed:autoform
-reactive-var
+
+less
+reactive-var            # Reactive variables for views, used in collapsible.

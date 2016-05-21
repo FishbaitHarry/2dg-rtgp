@@ -24,6 +24,9 @@ Template.areaSummary.events({
             pageData: this._id
         });
     },
+    'click .remove': function() {
+        GameAreas.remove(this._id);
+    },
     'click .more': function() {
         Template.instance().showMore = true;
     }
