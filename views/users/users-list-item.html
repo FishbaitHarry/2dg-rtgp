@@ -1,4 +1,4 @@
-<template name="user">
+<template name="usersListItem">
     <tr>
         {{#if canEditRoles}}
         <td>
@@ -18,6 +18,13 @@
         </td>
         <td class="text">
             <strong>{{username}}</strong>
+        </td>
+        <td class="text">
+            {{#if canEditRoles}}
+                <input type="text" name="factionName" value="{{profile.factionName}}" />
+            {{else}}
+                <mark>{{profile.factionName}}</mark>
+            {{/if}}
         </td>
         <td>
             {{#if currentUser}}

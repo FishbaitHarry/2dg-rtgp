@@ -17,6 +17,7 @@ ActiveUnits.propsSchema = new SimpleSchema({
     necro: {type: Boolean, optional: true},
     machine: {type: Boolean, optional: true},
     demon: {type: Boolean, optional: true},
+    sealer: {type: Boolean, optional: true},
 });
 ActiveUnits.schema = new SimpleSchema({
     name: {type: String},
@@ -25,6 +26,7 @@ ActiveUnits.schema = new SimpleSchema({
     props: {type: ActiveUnits.propsSchema},
     owner: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
     ownerName: {type: String, autoValue: onOwnerName},
+    factionName: {type: String, autoValue: onFactionName},
     location: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
     locationName: {type: String, autoValue: onLocationName},
 });
@@ -37,6 +39,16 @@ function onOwnerName() {
         return user.username;
     } else {
         return 'N/A';
+    }
+}
+
+function onFactionName() {
+    var owner = this.field('owner');
+    if (owner.isSet && !this.isSet) {
+        var user = Meteor.users.findOne({_id:owner.value});
+        return user.profile.factionName;
+    } else {
+        return;
     }
 }
 

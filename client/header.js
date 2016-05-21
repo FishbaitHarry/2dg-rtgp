@@ -7,7 +7,7 @@ Template.navigation.helpers({
                 {template: "myOrders", label: "Moje Rozkazy"},
                 {template: "myUnits", label: "Moje Oddziały"},
                 {template: "listAreas", label: "Świat"},
-                {template: "users", label: "Użytkownicy"}
+                {template: "usersList", label: "Użytkownicy"}
             );
         }
         if (checkPrivilege(Meteor.user(), 'master')) {

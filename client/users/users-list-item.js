@@ -1,4 +1,4 @@
-Template.user.helpers({
+Template.usersListItem.helpers({
     canEditRoles: function() {
         return checkPrivilege(Meteor.user(), 'admin');
     },
@@ -13,7 +13,7 @@ Template.user.helpers({
     }
 });
 
-Template.user.events({
+Template.usersListItem.events({
     "submit .send-message": function (event) {
         event.preventDefault();
         var text = event.target.text.value;
@@ -29,9 +29,14 @@ Template.user.events({
 
         event.target.text.value = "";
     },
-    "input select": function(event) {
+    "input select[name=role]": function(event) {
         var newRole = $(event.target).val();
         Meteor.call('Users.updateUserRole', this._id, newRole, onSuccess);
+        function onSuccess() {}
+    },
+    "blur input[name=factionName]": function(event) {
+        var newFactionName = $(event.target).val();
+        Meteor.call('Users.updateFactionName', this._id, newFactionName, onSuccess);
         function onSuccess() {}
     },
     "click .delete": function () {

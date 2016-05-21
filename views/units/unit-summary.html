@@ -1,8 +1,25 @@
 <template name="unitSummary">
     <strong>{{name}}</strong>
     ({{locationName}})
-    <mark>{{ownerName}}</mark>
+    <mark>{{factionName}}</mark>
+    <span>
+      <span class="label label-warning">{{stats.white}}</span>
+      <span class="label label-primary">{{stats.blue}}</span>
+      <span class="label label-default">{{stats.black}}</span>
+      <span class="label label-danger">{{stats.red}}</span>
+      <span class="label label-success">{{stats.green}}</span>
+    </span>
     {{#if isMaster}}
         <a href="#" class="btn btn-default edit">edycja</a>
     {{/if}}
+    {{#collapsible}}
+      <div class="well well-sm">
+        <h4>Opis:</h4>
+        <p>{{description}}</p>
+        <h4>Specjalne:</h4>
+        <p>{{propsSummary}}</p>
+        <h4>Właściciel:</h4>
+        <p>{{ownerName}}</p>
+      </div>
+    {{/collapsible}}
 </template>

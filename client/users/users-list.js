@@ -1,4 +1,4 @@
-Template.users.helpers({
+Template.usersList.helpers({
     canEditRoles: function() {
         return checkPrivilege(Meteor.user(), 'admin');
     },

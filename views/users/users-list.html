@@ -1,4 +1,4 @@
-<template name="users">
+<template name="usersList">
     <div class="">
         <h2>Users</h2>
 
@@ -7,11 +7,12 @@
                 {{#if canEditRoles}}<td>usuń</td>{{/if}}
                 <td>rola</td>
                 <td>nick</td>
+                <td>frakcja</td>
                 <td>wiadomość</td>
             </thead>
             <tbody>
                 {{#each users}}
-                {{> user}}
+                    {{> usersListItem}}
                 {{/each}}
             </tbody>
         </table>

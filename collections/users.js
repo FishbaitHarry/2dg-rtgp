@@ -6,7 +6,15 @@ Meteor.methods({
         Meteor.users.update(userId, {
             $set: {'profile.role': role}
         });
-    }
+    },
+    'Users.updateFactionName': function(userId, factionName) {
+        if(!checkPrivilege(Meteor.user(), 'admin')) {
+            throw new Meteor.Error('unauthorized', 'Not authorized.');
+        }
+        Meteor.users.update(userId, {
+            $set: {'profile.factionName': factionName}
+        });
+    },
 });
 
 // globally available helper function
