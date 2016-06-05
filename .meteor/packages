@@ -29,3 +29,5 @@ less
 reactive-var            # Reactive variables for views, used in collapsible.
 standard-minifier-css
 standard-minifier-js
+djedi:sanitize-html
+djedi:sanitize-html-client

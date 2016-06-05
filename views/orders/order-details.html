@@ -8,9 +8,14 @@
         <li>senderName: {{senderName}}</li>
         </ul>
     </p>
-    <p><button type="button" class="btn btn-default save" disabled>Zapisz Zmiany</button></p>
+    <p>
+      <button type="button" data-action="save" class="btn btn-default" disabled>Zapisz Zmiany</button>
+      {{#if isMaster}}
+      <button type="button" data-action="delete" class="btn">Usuń Rozkaz</button>
+      {{/if}}
+    </p>
     <p class="order-content well" contenteditable={{userEditable}} >
-        {{content}}
+        {{{content}}}
     </p>
     <p class="alert alert-info">
         Status rozkazu: {{status}} <span class={{orderStatusIcon status}}></span>
@@ -25,6 +30,6 @@
         {{/if}}
     </p>
     <p class="order-reply well" contenteditable={{canReply}}>
-        {{reply}}
+        {{{reply}}}
     </p>
 </template>

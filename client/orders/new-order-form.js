@@ -1,7 +1,7 @@
 Template.newOrderForm.events({
     "submit form": function (event) {
         event.preventDefault();
-        var text = Template.instance().$('.order-content').text();
+        var text = Template.instance().$('.order-content').html();
 
         CustomOrders.insert({
             content: text,
@@ -11,5 +11,6 @@ Template.newOrderForm.events({
             sender: Meteor.userId(),
             senderName: Meteor.user().username
         });
+        Session.set({page: 'myOrders'});
     }
 });

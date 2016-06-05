@@ -1,8 +1,8 @@
 CustomOrders = new Mongo.Collection("custom-orders");
 CustomOrders.schema = new SimpleSchema({
-    content: {type: String},
+    content: {type: String, autoValue: sanitizeOrderContent},
     status: {type: String, allowedValues: ['unread', 'read', 'inprogress', 'executed']},
-    reply: {type: String, optional: true},
+    reply: {type: String, autoValue: sanitizeOrderContent, optional: true},
     createdAt: {type: Date, autoValue: setCreatedAt},
     modifiedAt: {type: Date, autoValue: setModifiedAt},
     createdAtTurn: {type: Number},
@@ -13,6 +13,9 @@ CustomOrders.schema = new SimpleSchema({
 });
 CustomOrders.attachSchema(CustomOrders.schema);
 
+function sanitizeOrderContent() {
+    return sanitizeHtml(this.value);
+}
 function setCreatedAt() {
     if (this.isInsert) {
         return new Date();
