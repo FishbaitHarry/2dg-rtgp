@@ -1,6 +1,6 @@
 GameAreas = new Mongo.Collection("game-areas");
 GameAreas.connectionSchema = new SimpleSchema({
-    to: {type: String, regEx: SimpleSchema.RegEx.Id},
+    to: {type: String, regEx: CustomSchemas.LooseId},
     toName: {type: String},
     transport: {type: String, allowedValues: ['land', 'water', 'air']},
     distance: {type: Number, defaultValue: 1}

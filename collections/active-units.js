@@ -27,7 +27,7 @@ ActiveUnits.schema = new SimpleSchema({
     owner: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
     ownerName: {type: String, autoValue: onOwnerName},
     factionName: {type: String, autoValue: onFactionName},
-    location: {type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
+    location: {type: String, regEx: CustomSchemas.LooseId, optional: true},
     locationName: {type: String, autoValue: onLocationName},
 });
 ActiveUnits.attachSchema(ActiveUnits.schema);
@@ -56,7 +56,7 @@ function onLocationName() {
     var location = this.field('location');
     if (location.isSet) {
         var area = GameAreas.findOne({_id:location.value});
-        return area.name;
+        return area ? area.name : 'N/A';
     } else {
         return 'N/A';
     }
