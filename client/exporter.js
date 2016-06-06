@@ -31,6 +31,8 @@ function getAllData() {
     var collections = {
         // customOrders: CustomOrders,
         // messages: Messages,
+        areaConnections: AreaConnections,
+        users: Meteor.users,
         activeUnits: ActiveUnits,
         gameAreas: GameAreas
     };
@@ -50,6 +52,8 @@ function importData(loadEvent) {
     console.log(jsonFileData);
     importCollection(ActiveUnits, jsonFileData.activeUnits);
     importCollection(GameAreas, jsonFileData.gameAreas);
+    importCollection(AreaConnections, jsonFileData.areaConnections);
+    importCollection(Meteor.users, jsonFileData.users);
 }
 
 function importCollection(collection, modelsArray) {
