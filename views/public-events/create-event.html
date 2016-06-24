@@ -1,0 +1,8 @@
+<template name="createEvent">
+    <h2>Nowy event</h2>
+    {{> quickForm
+        collection="PublicEvents"
+        type="insert"
+        omitFields="createdAt"
+        id="createEvent"}}
+</template>

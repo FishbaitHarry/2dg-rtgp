@@ -3,6 +3,7 @@ Template.navigation.helpers({
         var pageLinks = [];
         if (checkPrivilege(Meteor.user(), 'user')) {
             pageLinks.push(
+                {template: "recentEvents", label: "Wydarzenia"},
                 {template: "myMessages", label: "Moje Wiadomości"},
                 {template: "myOrders", label: "Moje Rozkazy"},
                 {template: "myUnits", label: "Moje Oddziały"},
@@ -17,6 +18,7 @@ Template.navigation.helpers({
                 {template: "addAreas", label: "Dodaj Obszary"},
                 {template: "allUnits", label: "Wszystkie Oddziały"},
                 {template: "addUnit", label: "Dodaj Oddział"},
+                {template: "createEvent", label: "Dodaj Wydarzenie"},
                 {template: "exporter", label: "Import/Export Danych"}
             );
         }

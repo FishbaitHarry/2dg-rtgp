@@ -1,4 +1,7 @@
 <template name="allOrders">
+    <h3>Admin Panel</h3>
+    <button type="button" class="btn" data-action="closeAllOrders">Zamknij rozkazy</button>
+    <h3>Lista rozkazow</h3>
     {{#each orders}}
         <li>{{> orderSummary}}</li>
     {{/each}}

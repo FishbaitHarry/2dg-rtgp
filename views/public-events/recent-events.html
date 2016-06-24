@@ -1,0 +1,12 @@
+<template name="recentEvents">
+    <h2>Ostatnie Wydarzenia</h2>
+    <ul>
+        {{#each events}}
+        <li>
+            <h3>{{title}} (Tura {{turnNumber}})</h3>
+            <p><code>{{createdAt}}</code></p>
+            <p>{{content}}</p>
+        </li>
+        {{/each}}
+    </ul>
+</template>

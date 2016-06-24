@@ -5,7 +5,7 @@ CustomOrders.schema = new SimpleSchema({
     reply: {type: String, autoValue: sanitizeOrderContent, optional: true},
     createdAt: {type: Date, autoValue: setCreatedAt},
     modifiedAt: {type: Date, autoValue: setModifiedAt},
-    createdAtTurn: {type: Number},
+    createdAtTurn: {type: Number, autoValue: setCurrentTurn},
     remindAtTurn: {type: Number, optional: true},
     userEditable: {type: Boolean},
     sender: {type: String, regEx: SimpleSchema.RegEx.Id},
@@ -25,4 +25,14 @@ function setCreatedAt() {
 }
 function setModifiedAt() {
     return new Date();
+}
+
+function setCurrentTurn() {
+    if (this.isInsert) {
+        var lastEvent = PublicEvents.findOne({}, {sort: {createdAt: -1}});
+        if (!lastEvent) return 1;
+        return lastEvent.turnNumber;
+    } else {
+        this.unset();
+    }
 }
