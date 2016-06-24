@@ -15,3 +15,9 @@ function setCreatedAt() {
         this.unset();
     }
 }
+
+PublicEvents.getCurrentTurn = function() {
+    var lastEvent = PublicEvents.findOne({}, {sort: {createdAt: -1}});
+    if (!lastEvent) return 1;
+    return lastEvent.turnNumber;
+}

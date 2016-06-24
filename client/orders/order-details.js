@@ -1,6 +1,7 @@
 Template.orderDetails.helpers({
-    contentAttrs: function() {
-        return this.userEditable ? {contenteditable: ''} : {};
+    userEditable: function() {
+        var currentTurn = PublicEvents.getCurrentTurn();
+        return this.createdAtTurn === currentTurn;
     },
     canReply: function() {
         return checkPrivilege(Meteor.user(), 'master');
