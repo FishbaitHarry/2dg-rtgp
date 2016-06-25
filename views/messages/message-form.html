@@ -1,6 +1,6 @@
 <template name="messageForm">
     <form class="message-form">
-        <label>
+        <label class="form-group">
             <span>Adresat:</span>
             <select name="recipent">
                 {{#each users}}
@@ -8,7 +8,11 @@
                 {{/each}}
             </select>
         </label>
-        <textarea name="text" placeholder="Treść wiadomości"></textarea>
-        <button type="submit">Wyślij wiadomość</button>
+        <div class="form-group">
+          <textarea name="text" placeholder="Treść wiadomości"></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+        </div>
     </form>
 </template>

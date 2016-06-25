@@ -1,5 +1,6 @@
 Template.messagesListItem.events({
-    "click .delete": function () {
+    "click data-action=delete": function (evt) {
+        evt.preventDefault();
         Messages.remove(this._id);
     }
 });
