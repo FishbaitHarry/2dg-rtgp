@@ -1,0 +1,23 @@
+<template name="newBattle">
+    <h2>Prosta symulacja jednej rundy walki pomiędzy dwoma oddziałami.</h2>
+    <form>
+      <select name="unitA">
+        {{> unitSelectOptions allUnits=allUnits}}
+      </select>
+      <select name="unitB">
+        {{> unitSelectOptions allUnits=allUnits}}
+      </select>
+      <button type="submit" class="btn btn-primary">
+        FIGHT!
+      </button>
+    </form>
+    <ol>
+      {{#each battleLog}}<li>{{.}}</li>{{/each}}
+    </ol>
+</template>
+
+<template name="unitSelectOptions">
+  {{#each allUnits}}
+    <option value="{{_id}}" label="{{name}}"></option>
+  {{/each}}
+</template>

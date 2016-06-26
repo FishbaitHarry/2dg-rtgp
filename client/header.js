@@ -19,6 +19,7 @@ Template.navigation.helpers({
                 {template: "allUnits", label: "Wszystkie Oddziały"},
                 {template: "addUnit", label: "Dodaj Oddział"},
                 {template: "createEvent", label: "Dodaj Wydarzenie"},
+                {template: "newBattle", label: "Rozegraj Bitwę"},
                 {template: "exporter", label: "Import/Export Danych"}
             );
         }
