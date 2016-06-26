@@ -19,6 +19,9 @@ Meteor.methods({
 
 // globally available helper function
 checkPrivilege = function checkPrivilege(user, role) {
+    if (typeof user == 'string') {
+        user = Meteor.users.findOne(user);
+    }
     try {
         var userRole = user.profile.role;
         if (role == 'user') return true;

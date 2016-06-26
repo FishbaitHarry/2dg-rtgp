@@ -1,3 +1,7 @@
+Template.allMessages.onCreated(function() {
+  Meteor.subscribe('Messages.allMessages');
+});
+
 Template.allMessages.helpers({
     messages: function () {
         return Messages.find({}, {

@@ -1,3 +1,7 @@
+Template.personalMessages.onCreated(function() {
+  Meteor.subscribe('Messages.myMessages');
+});
+
 Template.personalMessages.helpers({
     personalMessages: function () {
         return Messages.find({

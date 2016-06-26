@@ -21,3 +21,11 @@ PublicEvents.getCurrentTurn = function() {
     if (!lastEvent) return 1;
     return lastEvent.turnNumber;
 }
+
+if (Meteor.isServer) {
+    Meteor.publish('publicEvents', function() {
+        return PublicEvents.find();
+    });
+} else {
+    Meteor.subscribe('publicEvents');
+}

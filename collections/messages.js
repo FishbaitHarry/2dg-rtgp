@@ -9,15 +9,25 @@ Messages.schema = new SimpleSchema({
 });
 Messages.attachSchema(Messages.schema);
 
-// TODO: add security in future
-// Meteor.publish({'Messages.myMessages': function () {
-//     if (!this.userId) {
-//         return this.ready();
-//     }
-//     return Messages.find({
-//         $or: [{recipent: this.userId},{sender: this.userId}]
-//     }, {
-//         sort: {createdAt: -1},
-//         limit: 100
-//     });
-// }});
+if (Meteor.isServer) {
+    Meteor.publish('Messages.myMessages', function() {
+      if (!this.userId) {
+        return this.ready();
+      }
+      return Messages.find({
+        $or: [{recipent: this.userId},{sender: this.userId}]
+      }, {
+        sort: {createdAt: -1},
+        limit: 100
+      });
+    });
+    Meteor.publish('Messages.allMessages', function() {
+      if(!checkPrivilege(this.userId, 'admin')) {
+        return this.ready();
+      }
+      return Messages.find({}, {
+        sort: {createdAt: -1},
+        limit: 100
+      });
+    });
+}
