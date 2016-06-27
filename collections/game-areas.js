@@ -40,3 +40,11 @@ function onFactionName() {
         return;
     }
 }
+
+if (Meteor.isServer) {
+    Meteor.publish('gameAreas', function() {
+        return GameAreas.find();
+    });
+} else {
+    Meteor.subscribe('gameAreas');
+}

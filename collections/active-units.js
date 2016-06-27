@@ -61,3 +61,19 @@ function onLocationName() {
         return 'N/A';
     }
 }
+
+if (Meteor.isServer) {
+    Meteor.publish('ActiveUnits', function() {
+      if (!this.userId) {
+        return this.ready();
+      }
+      if(checkPrivilege(this.userId, 'admin')) {
+        return ActiveUnits.find({}, {});
+      }
+      return ActiveUnits.find({
+        owner: this.userId
+      }, {});
+    });
+} else {
+    Meteor.subscribe('ActiveUnits');
+}

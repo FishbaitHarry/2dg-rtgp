@@ -32,3 +32,11 @@ checkPrivilege = function checkPrivilege(user, role) {
         return false;
     }
 }
+
+if (Meteor.isServer) {
+    Meteor.publish('allUsers', function() {
+        return Meteor.users.find();
+    });
+} else {
+    Meteor.subscribe('allUsers');
+}

@@ -33,3 +33,23 @@ function setCurrentTurn() {
         this.unset();
     }
 }
+
+if (Meteor.isServer) {
+    Meteor.publish('CustomOrders.myOrders', function() {
+      if (!this.userId) {
+        return this.ready();
+      }
+      return CustomOrders.find({
+        sender: this.userId
+      }, {});
+    });
+    Meteor.publish('CustomOrders.allOrders', function() {
+      if(!checkPrivilege(this.userId, 'admin')) {
+        return this.ready();
+      }
+      return CustomOrders.find({}, {
+        sort: {createdAt: -1},
+        limit: 100
+      });
+    });
+}

@@ -6,3 +6,12 @@ AreaConnections.schema = new SimpleSchema({
     distance: {type: Number, defaultValue: 1}
 });
 AreaConnections.attachSchema(AreaConnections.schema);
+
+
+if (Meteor.isServer) {
+    Meteor.publish('AreaConnections', function() {
+        return AreaConnections.find();
+    });
+} else {
+    Meteor.subscribe('AreaConnections');
+}

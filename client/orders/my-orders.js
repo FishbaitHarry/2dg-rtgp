@@ -1,3 +1,7 @@
+Template.myOrders.onCreated(function() {
+    Meteor.subscribe('CustomOrders.myOrders');
+});
+
 Template.myOrders.helpers({
     orders: function() {
         return CustomOrders.find({
