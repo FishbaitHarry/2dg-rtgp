@@ -18,9 +18,9 @@ Template.newBattle.events({
         evt.preventDefault();
         var unitA = ActiveUnits.findOne(evt.target.unitA.value);
         var unitB = ActiveUnits.findOne(evt.target.unitB.value);
-        var normalA = toNormalUnit(unitA);
-        var normalB = toNormalUnit(unitB);
-        Battle.unitClash(normalA, normalB);
+        var sideA = [toNormalUnit(unitA)];
+        var sideB = [toNormalUnit(unitB)];
+        Battle.resolveBattle(sideA, sideB);
         Template.instance().battleLog.set(Battle.getLogs());
     }
 });

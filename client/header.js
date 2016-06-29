@@ -8,6 +8,7 @@ Template.navigation.helpers({
                 {template: "myOrders", label: "Moje Rozkazy"},
                 {template: "myUnits", label: "Moje Oddziały"},
                 {template: "listAreas", label: "Świat"},
+                {template: "newBattle", label: "Rozegraj Bitwę"},
                 {template: "usersList", label: "Użytkownicy"}
             );
         }
@@ -19,7 +20,6 @@ Template.navigation.helpers({
                 {template: "allUnits", label: "Wszystkie Oddziały"},
                 {template: "addUnit", label: "Dodaj Oddział"},
                 {template: "createEvent", label: "Dodaj Wydarzenie"},
-                {template: "newBattle", label: "Rozegraj Bitwę"},
                 {template: "exporter", label: "Import/Export Danych"}
             );
         }

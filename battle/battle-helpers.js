@@ -2,7 +2,7 @@ var logger = [];
 
 // global!
 Battle = {
-  unitClash,
+  resolveBattle,
   getLogs
 }
 
@@ -10,31 +10,51 @@ function getLogs() {
     return logger;
 }
 
-function unitClash(unitA, unitB) {
+function resolveBattle(sideA, sideB) {
     logger = []; //temporary
-    checkOutnumber(unitA, unitB);
-    checkOutnumber(unitB, unitA);
-    if (checkEliminated(unitA, unitB)) return;
-    checkOutmanuever(unitA, unitB);
-    checkOutmanuever(unitB, unitA);
-    if (checkEliminated(unitA, unitB)) return;
-    checkOutlast(unitA, unitB);
-    checkOutlast(unitB, unitA);
-    if (checkEliminated(unitA, unitB)) return;
-    checkOverpower(unitA, unitB);
-    checkOverpower(unitB, unitA);
-    if (checkEliminated(unitA, unitB)) return;
-    checkBroken(unitA, unitB);
-    checkBroken(unitB, unitA);
-    if (checkEliminated(unitA, unitB)) return;
-    checkAttrition(unitA, unitB);
-    checkAttrition(unitB, unitA);
-    if (checkEliminated(unitA, unitB)) return;
-    checkFatigue(unitA);
-    checkFatigue(unitB);
+    var unitA = sideA[0];
+    var unitB = sideB[0];
+
+    while (unitA && unitB) {
+      unitClash(unitA, unitB);
+      if(unitA.eliminated) unitA = null;
+      if(unitB.eliminated) unitB = null;
+    }
 }
 
-function checkEliminated(unitA, unitB) {
+function unitClash(unitA, unitB) {
+    checkOutnumber(unitA, unitB);
+    checkOutnumber(unitB, unitA);
+    if (checkPairEliminated(unitA, unitB)) return;
+    checkOutmanuever(unitA, unitB);
+    checkOutmanuever(unitB, unitA);
+    if (checkPairEliminated(unitA, unitB)) return;
+    checkOutlast(unitA, unitB);
+    checkOutlast(unitB, unitA);
+    if (checkPairEliminated(unitA, unitB)) return;
+    checkOverpower(unitA, unitB);
+    checkOverpower(unitB, unitA);
+    if (checkPairEliminated(unitA, unitB)) return;
+    checkBroken(unitA, unitB);
+    checkBroken(unitB, unitA);
+    if (checkPairEliminated(unitA, unitB)) return;
+    checkAttrition(unitA, unitB);
+    checkAttrition(unitB, unitA);
+    if (checkPairEliminated(unitA, unitB)) return;
+    checkFatigue(unitA);
+    checkFatigue(unitB);
+    if (checkPairEliminated(unitA, unitB)) return;
+    // continue
+    return true;
+}
+
+function checkPairEliminated(unitA, unitB) {
+  unitA.eliminated = checkUnitEliminated(unitA);
+  unitB.eliminated = checkUnitEliminated(unitB);
+  return unitA.eliminated || unitB.eliminated;
+}
+
+function checkUnitEliminated(unitA) {
   if (!unitA.white) {
     logger.push(`Złamane morale i formacja w strzępach, oddział ${unitA.name} rozpierzchł się.`);
     return true;
@@ -59,8 +79,8 @@ function checkEliminated(unitA, unitB) {
     logger.push(`Zdziesiątkowane w walce, resztki oddziału ${unitA.name} zmieszały się z chaosem bitwy.`);
     return true;
   }
-  return (unitB && checkEliminated(unitB));
 }
+
 function checkOutnumber(unitA, unitB) {
   if (unitA.green < unitB.green) {
     if (unitA.cavalry && unitB.infantry) {
