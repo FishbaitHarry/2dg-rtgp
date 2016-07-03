@@ -12,14 +12,42 @@ function getLogs() {
 
 function resolveBattle(sideA, sideB) {
     logger = []; //temporary
-    var unitA = sideA[0];
-    var unitB = sideB[0];
+    var melees = [];
+    var roundNumber = 0;
 
-    while (unitA && unitB) {
-      unitClash(unitA, unitB);
-      if(unitA.eliminated) unitA = null;
-      if(unitB.eliminated) unitB = null;
+    while (melees.length || (sideA.length && sideB.length)) {
+        logger.push(`Zaczyna się runda ${++roundNumber} bitwy.`);
+        melees = battleRound(sideA, sideB, melees)
     }
+}
+
+function newMelees(sideA, sideB) {
+    var newMelees = [];
+    while (sideA.length && sideB.length) {
+      var newMelee = {
+        sideA: sideA.shift(),
+        sideB: sideB.shift()
+      };
+      newMelees.push(newMelee);
+      logger.push(`Ścierają się ${newMelee.sideA.name} oraz ${newMelee.sideB.name}.`);
+    }
+    return newMelees;
+}
+
+function battleRound(sideA, sideB, melees) {
+    var currentMelees = melees.concat(newMelees(sideA, sideB));
+    var lastingMelees = [];
+    currentMelees.forEach(function(melee) {
+        unitClash(melee.sideA, melee.sideB);
+        if (!melee.sideA.eliminated && !melee.sideB.eliminated) {
+            lastingMelees.push(melee);
+        } else if (!melee.sideA.eliminated) {
+            sideA.push(melee.sideA);
+        } else if (!melee.sideB.eliminated) {
+            sideB.push(melee.sideB);
+        }
+    });
+    return lastingMelees;
 }
 
 function unitClash(unitA, unitB) {
