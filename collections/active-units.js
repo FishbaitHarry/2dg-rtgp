@@ -71,7 +71,10 @@ if (Meteor.isServer) {
         return ActiveUnits.find({}, {});
       }
       return ActiveUnits.find({
-        owner: this.userId
+        $or: [
+          { owner: this.userId },
+          { owner: null }
+        ]
       }, {});
     });
 } else {
