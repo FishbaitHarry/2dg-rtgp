@@ -7,7 +7,7 @@ Template.registerHelper('gameAreaSelect', function(status) {
 
 Template.listAreas.helpers({
     areas: function() {
-        return GameAreas.find({});
+        return GameAreas.find({}, {sort: {name: 1}});
     }
 });
 

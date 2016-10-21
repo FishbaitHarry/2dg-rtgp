@@ -10,7 +10,7 @@
 <template name="areaSummary">
     <li>
         <strong>{{name}}</strong>
-        <mark>{{ownerName}}</mark>
+        <mark>{{factionName}}</mark>
         {{#collapsible}}
             {{> areaDetails}}
         {{/collapsible}}
@@ -23,8 +23,6 @@
     <p>{{description}}</p>
     <h4>Typ terenu:</h4>
     <p>{{areaType}}</p>
-    <h4>sąsiaduje z:</h4>
-    <ul>{{#each connections}}<li>{{toName}}</li>{{/each}}</ul>
     {{#if isMaster}}
         <button type="button" class="btn btn-default edit">edycja</button>
         <button type="button" class="btn btn-danger remove">usuń</button>
