@@ -1,12 +1,14 @@
 <template name="newBattle">
-    <h2>Prosta symulacja bitwy 1 na 1.</h2>
-    <form>
-      <select name="unitA">
+    <h2>Symulator Bitwy</h2>
+    <form class="row">
+      <fieldset class="col-sm-6" name="sideA">
+        <h4>Strona A</h4>
         {{> unitSelectOptions allUnits=allUnits}}
-      </select>
-      <select name="unitB">
+      </fieldset>
+      <fieldset class="col-sm-6" name="sideB">
+        <h4>Strona B</h4>
         {{> unitSelectOptions allUnits=allUnits}}
-      </select>
+      </fieldset>
       <button type="submit" class="btn btn-primary">
         FIGHT!
       </button>
@@ -18,6 +20,11 @@
 
 <template name="unitSelectOptions">
   {{#each allUnits}}
-    <option value="{{_id}}" label="{{name}}"></option>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="{{_id}}">
+        {{name}}
+      </label>
+    </div>
   {{/each}}
 </template>

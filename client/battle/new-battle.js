@@ -16,14 +16,26 @@ Template.newBattle.helpers({
 Template.newBattle.events({
     'submit form': function(evt) {
         evt.preventDefault();
-        var unitA = ActiveUnits.findOne(evt.target.unitA.value);
-        var unitB = ActiveUnits.findOne(evt.target.unitB.value);
-        var sideA = [toNormalUnit(unitA)];
-        var sideB = [toNormalUnit(unitB)];
-        Battle.resolveBattle(sideA, sideB);
+        var sideA = [], sideB = [];
+        Template.instance()
+          .$('[name=sideA] input:checked')
+          .each((i,el) => sideA.push(el.value));
+        Template.instance()
+          .$('[name=sideB] input:checked')
+          .each((i,el) => sideB.push(el.value));
+
+        Battle.resolveBattle(
+          sideA.map(getUnitById),
+          sideB.map(getUnitById)
+        );
+
         Template.instance().battleLog.set(Battle.getLogs());
     }
 });
+
+function getUnitById(id) {
+  return toNormalUnit(ActiveUnits.findOne(id));
+}
 
 function toNormalUnit(unit) {
   return _.extend({}, unit.stats, unit.props, {name: unit.name});
