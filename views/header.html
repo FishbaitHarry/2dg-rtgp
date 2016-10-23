@@ -1,26 +1,16 @@
-<template name="header">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <header class="navbar-header">
-                <span class="navbar-brand">
-                    Road to Glory
-                </span>
-            </header>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Zalogowany jako: {{> loginButtons}}</a></li>
-            </ul>
-        </div>
-    </nav>
-</template>
-
 <template name="navigation">
+    {{> loginButtons}}
     <ul class="nav nav-pills nav-stacked">
         {{#each pageLinks}}
-        {{> pageLink}}
+          {{> pageLink}}
         {{/each}}
     </ul>
 </template>
 
 <template name="pageLink">
-    <li class={{classes}}><a href="#">{{label}}</a></li>
+    <li class={{classes}}>
+      <a href="#" class="draggable">
+        <span class="glyphicon glyphicon-move"></span> {{label}}
+      </a>
+    </li>
 </template>

@@ -1,0 +1,23 @@
+{
+  "name": "2dg-rtgp",
+  "version": "1.0.0",
+  "description": "Road to Glory Project",
+  "main": "index.js",
+  "dependencies": {
+    "golden-layout": "^1.5.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FishbaitHarry/2dg-rtgp.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FishbaitHarry/2dg-rtgp/issues"
+  },
+  "homepage": "https://github.com/FishbaitHarry/2dg-rtgp#readme"
+}
