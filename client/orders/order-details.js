@@ -15,19 +15,18 @@ Template.orderDetails.events({
     'input [contenteditable],select': function() {
         Template.instance().$('button').prop('disabled', false);
     },
-    'click [data-action=save]': function() {
+    'click [data-action=save]': function(evt, template) {
         var setOptions = {};
-        var content = Template.instance().$('.order-content').html();
-        var reply = Template.instance().$('.order-reply').html();
-        var status = Template.instance().$('select[name=status]').val();
+        var content = template.$('.order-content').html();
+        var reply = template.$('.order-reply').html();
+        var status = template.$('select[name=status]').val();
         if (content) setOptions.content = content;
         if (reply) setOptions.reply = reply;
         if (status) setOptions.status = status;
         CustomOrders.update(this._id, {$set: setOptions});
-        Session.set({page: 'myOrders'});
     },
-    'click [data-action=delete]': function() {
+    'click [data-action=delete]': function(evt, template) {
+        // template.data.layoutContainer.close();
         CustomOrders.remove(this._id);
-        Session.set({page: 'allOrders'});
     }
 });

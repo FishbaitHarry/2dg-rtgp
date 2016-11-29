@@ -2,7 +2,7 @@ import GoldenLayout from 'golden-layout';
 
 var defaultLayoutConfig = {
     content: [{
-        type: 'row',
+        type: 'stack',
         content:[{
             type: 'component',
             width: 30,
@@ -13,7 +13,7 @@ var defaultLayoutConfig = {
             type: 'component',
             width: 70,
             componentName: 'recentEvents',
-            componentState: { templateName: 'recentEvents' }
+            componentState: { mobile: 'false111' }
         }]
     }]
 };
@@ -35,8 +35,14 @@ function registerAllPages(gLayout) {
         var templateClass = Template[property];
         if(Blaze.isTemplate(templateClass)) {
             gLayout.registerComponent(templateName, function(container, componentState){
-                Blaze.render(templateClass, container.getElement()[0]);
+                var componentRootEl = container.getElement()[0];
+                var data = Object.assign({layoutContainer: container}, componentState);
+                Blaze.renderWithData(templateClass, data, componentRootEl);
             });
         }
     });
 }
+
+Template.body.addChild = function(layoutConfig) {
+    Template.body.mainLayout.root.contentItems[0].addChild(layoutConfig);
+};

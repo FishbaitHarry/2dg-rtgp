@@ -19,9 +19,10 @@ Template.areaSummary.helpers({
 
 Template.areaSummary.events({
     'click .edit': function() {
-        Session.set({
-            page: 'editArea',
-            pageData: this._id
+        Template.body.addChild({
+            type: 'component',
+            componentName: 'editArea',
+            componentState: {pageAreaId: this._id}
         });
     },
     'click .remove': function() {
@@ -34,7 +35,6 @@ Template.areaSummary.events({
 
 Template.editArea.helpers({
     area: function() {
-        var areaId = Session.get('pageData');
-        return GameAreas.findOne(areaId);
+        return GameAreas.findOne(this.pageAreaId);
     }
 });

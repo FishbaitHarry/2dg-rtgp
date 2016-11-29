@@ -9,9 +9,10 @@ Template.unitSummary.helpers({
 Template.unitSummary.events({
     'click .edit': function(evt) {
         evt.preventDefault();
-        Session.set({
-            page: 'editUnit',
-            pageData: this._id
-        })
+        Template.body.addChild({
+            type: 'component',
+            componentName: 'editUnit',
+            componentState: {pageUnitId: this._id}
+        });
     }
 });

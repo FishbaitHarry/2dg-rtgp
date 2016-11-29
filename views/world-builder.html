@@ -11,7 +11,7 @@
 </template>
 
 <template name="editArea">
-    {{#autoForm collection="GameAreas" doc=area type="update" id="editArea"}}
+    {{#autoForm collection="GameAreas" doc=area type="update" id=pageAreaId}}
         {{> afQuickFields omitFields="owner,ownerName"}}
         {{> afFieldInput name="owner" options=userSelect}}
         {{> afFieldInput type="submit"}}

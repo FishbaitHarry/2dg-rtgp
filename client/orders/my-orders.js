@@ -16,8 +16,10 @@ Template.myOrders.helpers({
 Template.myOrders.events({
     "click .new-order-link": function(evt) {
         evt.preventDefault();
-        Session.set({
-            page: 'newOrderForm'
+        Template.body.addChild({
+            type: 'component',
+            componentName: 'newOrderForm',
+            componentState: {}
         });
     }
 });

@@ -1,5 +1,5 @@
 Template.newOrderForm.events({
-    "submit form": function (event) {
+    "submit form": function (event, template) {
         event.preventDefault();
         var text = Template.instance().$('.order-content').html();
 
@@ -11,6 +11,6 @@ Template.newOrderForm.events({
             sender: Meteor.userId(),
             senderName: Meteor.user().username
         });
-        Session.set({page: 'myOrders'});
+        template.data.layoutContainer.close();
     }
 });

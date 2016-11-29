@@ -16,9 +16,10 @@ Template.orderSummary.helpers({
 Template.orderSummary.events({
     "click a": function(evt) {
         evt.preventDefault();
-        Session.set({
-            page: 'orderPage',
-            pageData: this._id
+        Template.body.addChild({
+            type: 'component',
+            componentName: 'orderPage',
+            componentState: {pageOrderId: this._id}
         });
     }
 });

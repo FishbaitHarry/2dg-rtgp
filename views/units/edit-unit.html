@@ -1,6 +1,6 @@
 <template name="editUnit">
     <h2>Edycja oddziału</h2>
-    {{#autoForm collection="ActiveUnits" doc=activeUnit type="update" id="editUnit"}}
+    {{#autoForm collection="ActiveUnits" doc=activeUnit type="update" id=pageUnitId}}
         {{> afQuickFields omitFields="owner,ownerName,location,locationName"}}
         {{> afQuickField name="owner" options=userSelect}}
         {{> afQuickField name="location" options=gameAreaSelect}}
